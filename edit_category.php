@@ -1,10 +1,10 @@
 <?php
 require('connection.php');
-session_start();
+// session_start();
 
-$user_first_name = $_SESSION['user_first_name'];
-$user_last_name = $_SESSION['user_last_name'];
-if(!empty($user_first_name)&& !empty($user_last_name)){
+// $user_first_name = $_SESSION['user_first_name'];
+// $user_last_name = $_SESSION['user_last_name'];
+// if(!empty($user_first_name)&& !empty($user_last_name)){
 ?>
 <?php $date = date('d/m/y');?>
 <?php
@@ -452,7 +452,7 @@ if(!empty($user_first_name)&& !empty($user_last_name)){
 </body>
 </html>
 <?php
-    }else{
-        header('location:login.php');
-    }
+    // }else{
+    //     header('location:login.php');
+    // }
 ?>
