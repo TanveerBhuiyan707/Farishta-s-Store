@@ -6,12 +6,28 @@ session_start();
 // $user_last_name = $_SESSION['user_last_name'];
 // if(!empty($user_first_name)&& !empty($user_last_name)){
 ?>
-
 <?php
-$sql = "SELECT * FROM product";
-$query = $conn->query($sql);
-    
+// $sql = "SELECT * FROM product";
+// $query = $conn->query($sql);  
 ?>
+<?php
+ $sql = "SELECT
+                product.product_id,
+                product.product_name,
+                product.product_quentity,
+                product.product_code,
+                category.category_name
+          FROM
+              product
+          JOIN
+              category
+          ON
+            product.product_category = category.category_id";
+  $query = $conn->query($sql)
+ 
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,7 +105,7 @@ $query = $conn->query($sql);
                                 $product_id =$data['product_id'];
                                 $product_name = $data['product_name'];
                                 $product_quentity = $data['product_quentity'];
-                                $product_category = $data['product_category'];
+                                $category_name = $data['category_name'];
                                 $product_code = $data['product_code'];
                             $sl++;    
                         ?>
@@ -97,7 +113,7 @@ $query = $conn->query($sql);
                         <td><?php echo $sl ?></td>
                         <td><?php echo $product_name ?></td>
                         <td><?php echo $product_quentity ?></td>
-                        <td><?php echo $product_category ?></td>
+                        <td><?php echo $category_name ?></td>
                         <td><?php echo $product_code ?></td>
                         <td>
                             <a href="edit_product.php?id=<?php echo $product_id ?>" class = "btn btn-success">
@@ -145,8 +161,8 @@ $query = $conn->query($sql);
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-              <b><a href="https://www.facebook.com/Tanveer.7077/" target="_blank">Tanveer bhuiyan</a></b>
+            <span>copyright &copy; <script> document.write(new Date().GETFullYear()); </script> - developed by
+              <b><a href="https://www.facebook.com/Tanveer.7077/" tarGET="_blank">Tanveer bhuiyan</a></b>
             </span>
           </div>
         </div>

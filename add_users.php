@@ -26,11 +26,11 @@ require('connection.php');
 <body class="bg-gradient-login">
   
 <?php
-    if(isset($_POST['user_first_name'])){
-        $user_first_name  = $_POST['user_first_name'];
-        $user_last_name   = $_POST['user_last_name'];
-        $user_email       = $_POST['user_email'];
-        $user_password    = $_POST['user_password'];
+    if(isset($_GET['user_first_name'])){
+        $user_first_name  = $_GET['user_first_name'];
+        $user_last_name   = $_GET['user_last_name'];
+        $user_email       = $_GET['user_email'];
+        $user_password    = $_GET['user_password'];
 
         $sql = "INSERT INTO users(user_first_name,user_last_name,user_email,user_password)
         VALUES('$user_first_name','$user_last_name','$user_email','$user_password')";
@@ -55,7 +55,7 @@ require('connection.php');
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Add User</h1>
                   </div>
-                  <form class="user" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" required>
+                  <form class="user" action="<?php echo $_SERVER['PHP_SELF'];?>" method="GET" required>
                     <div class="form-group">
                       <input type="text" class="form-control" id="exampleInputFirstName" aria-describedby="emailHelp"
                         placeholder="Enter First Name" name="user_first_name">

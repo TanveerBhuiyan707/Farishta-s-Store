@@ -8,10 +8,10 @@ require('connection.php');
 ?>
 <?php $date = date('d/m/y');?>
 <?php
-    if(isset($_GET['id'])){
-        $getId = $_GET['id'];
+    if(isset($_POST['id'])){
+        $POSTId = $_POST['id'];
 
-        $sql = "SELECT * FROM product WHERE product_id = $getId";
+        $sql = "SELECT * FROM product WHERE product_id = $POSTId";
         $query = $conn->query($sql);
         $data = mysqli_fetch_assoc($query);
         $product_id         =  $data['product_id'];
@@ -22,13 +22,13 @@ require('connection.php');
         $product_entry_date =  $data['product_entry_date'];
     }
 
-    if(isset($_GET['product_name'])){
-        $new_product_name       = $_GET['product_name'];
-        $new_product_quentity   = $_GET['product_quentity'];
-        $new_product_category   = $_GET['product_category'];
-        $new_product_code       = $_GET['product_code'];
-        $new_product_entry_date = $_GET['product_entry_date'];
-        $new_product_id         = $_GET['product_id'];
+    if(isset($_POST['product_name'])){
+        $new_product_name       = $_POST['product_name'];
+        $new_product_quentity   = $_POST['product_quentity'];
+        $new_product_category   = $_POST['product_category'];
+        $new_product_code       = $_POST['product_code'];
+        $new_product_entry_date = $_POST['product_entry_date'];
+        $new_product_id         = $_POST['product_id'];
 
 
         $sql1 = "UPDATE product SET
@@ -100,7 +100,7 @@ require('connection.php');
                   <h6 class="m-0 font-weight-bold text-primary">Edit Product</h6>
                 </div>
                 <div class="card-body">
-                  <form action ="" method="GET">
+                  <form action ="" method="POST">
                     <div class="form-group">
                       <label for="exampleInputProduct">Product Name</label>
                       <input type="text" name="product_name" value="<?php echo $product_name ?>" class="form-control" id="exampleInputProduct" aria-describedby="emailHelp">
@@ -164,8 +164,8 @@ require('connection.php');
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-              <b><a href="https://www.facebook.com/Tanveer.7077/" target="_blank">Tanveer bhuiyan</a></b>
+            <span>copyright &copy; <script> document.write(new Date().POSTFullYear()); </script> - developed by
+              <b><a href="https://www.facebook.com/Tanveer.7077/" tarPOST="_blank">Tanveer bhuiyan</a></b>
             </span>
           </div>
         </div>

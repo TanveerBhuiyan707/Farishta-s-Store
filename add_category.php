@@ -130,8 +130,8 @@ $date = date('d/m/y');
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-              <b><a href="https://www.facebook.com/Tanveer.7077/" target="_blank">Tanveer bhuiyan</a></b>
+            <span>copyright &copy; <script> document.write(new Date().GETFullYear()); </script> - developed by
+              <b><a href="https://www.facebook.com/Tanveer.7077/" tarGET="_blank">Tanveer bhuiyan</a></b>
             </span>
           </div>
         </div>
@@ -216,7 +216,7 @@ $date = date('d/m/y');
         max: 100,
         decimals: 2,
         step: 0.1,
-        postfix: '%',
+        GETfix: '%',
         initval: 0,
         boostat: 5,
         maxboostedstep: 10

@@ -11,9 +11,9 @@ require('myFunction.php');
 <?php $date = date('d/m/y'); ?>
 <?php
     if(isset($_GET['id'])){
-        $getId = $_GET['id'];
+        $GETId = $_GET['id'];
 
-        $sql = "SELECT * FROM spend_product WHERE spend_product_id = $getId";
+        $sql = "SELECT * FROM spend_product WHERE spend_product_id = $GETId";
         $query = $conn->query($sql);
         $data = mysqli_fetch_assoc($query);
 
@@ -165,8 +165,8 @@ require('myFunction.php');
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-              <b><a href="https://www.facebook.com/Tanveer.7077/" target="_blank">Tanveer bhuiyan</a></b>
+            <span>copyright &copy; <script> document.write(new Date().GETFullYear()); </script> - developed by
+              <b><a href="https://www.facebook.com/Tanveer.7077/" tarGET="_blank">Tanveer bhuiyan</a></b>
             </span>
           </div>
         </div>
@@ -250,7 +250,7 @@ require('myFunction.php');
         max: 100,
         decimals: 2,
         step: 0.1,
-        postfix: '%',
+        GETfix: '%',
         initval: 0,
         boostat: 5,
         maxboostedstep: 10

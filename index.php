@@ -6,6 +6,36 @@ session_start();
   // $user_last_name = $_SESSION['user_last_name'];
   // if(!empty($user_first_name)&& !empty($user_last_name)){
 ?>
+<?php
+  // pulling data from database
+  // it is category table
+  $category = "SELECT COUNT(DISTINCT category_name) AS total_categories FROM category ";
+  $category_result = $conn->query($category);
+
+  
+  if($category_result->num_rows > 0) {
+    $row1 = $category_result->fetch_assoc();
+    $total_categories = $row1['total_categories'];
+  }
+  
+  // it is Product AND Store table
+  $product = "SELECT SUM(product_quentity) AS total_products FROM product ";
+  $product_result = $conn->query($product);
+
+  if($product_result->num_rows > 0){
+    $row2 = $product_result->fetch_assoc();
+    $total_products = $row2['total_products'];
+  }
+
+  // it is Spend table
+  $spend_product = "SELECT SUM(spend_product_quentity) AS spend_products FROM spend_product ";
+  $spend_product_result = $conn->query($spend_product);
+
+  if($spend_product_result->num_rows > 0){
+    $row3 = $spend_product_result->fetch_assoc();
+    $spend_product = $row3['spend_products'];
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,7 +79,7 @@ session_start();
                   <div class="row align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Total Category</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_categories ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-primary"></i>
@@ -65,7 +95,7 @@ session_start();
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Total Product</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_products ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-shopping-cart fa-2x text-success"></i>
@@ -81,7 +111,7 @@ session_start();
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Store Product</div>
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $total_products ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-users fa-2x text-info"></i>
@@ -97,7 +127,7 @@ session_start();
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Spend Product</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $spend_product ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-warning"></i>
@@ -200,8 +230,8 @@ session_start();
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-              <b><a href="https://www.facebook.com/Tanveer.7077/" target="_blank">Tanveer bhuiyan</a></b>
+            <span>copyright &copy; <script> document.write(new Date().GETFullYear()); </script> - developed by
+              <b><a href="https://www.facebook.com/Tanveer.7077/" tarGET="_blank">Tanveer bhuiyan</a></b>
             </span>
           </div>
         </div>

@@ -24,9 +24,9 @@ session_start();
 <body class="bg-gradient-login">
   
   <?php
-  if(isset($_POST['user_email'])){
-      $user_email       = $_POST['user_email'];
-      $user_password    = $_POST['user_password'];
+  if(isset($_GET['user_email'])){
+      $user_email       = $_GET['user_email'];
+      $user_password    = $_GET['user_password'];
 
       $sql = "SELECT * FROM users WHERE user_email = '$user_email' AND user_password = '$user_password'";
 
@@ -60,7 +60,7 @@ session_start();
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
-                  <form class="user" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
+                  <form class="user" action="<?php echo $_SERVER['PHP_SELF'];?>" method="GET">
                     <div class="form-group">
                       <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                         placeholder="Enter Email Address" name="user_email">

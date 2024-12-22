@@ -259,7 +259,7 @@ require('connection.php');
         max: 100,
         decimals: 2,
         step: 0.1,
-        postfix: '%',
+        GETfix: '%',
         initval: 0,
         boostat: 5,
         maxboostedstep: 10
