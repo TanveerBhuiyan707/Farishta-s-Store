@@ -1,22 +1,23 @@
 <?php
 require('connection.php');
 // session_start();
-
 // $user_first_name = $_SESSION['user_first_name'];
 // $user_last_name = $_SESSION['user_last_name'];
 // if(!empty($user_first_name)&& !empty($user_last_name)){
+
 ?>
 <?php $date = date('d/m/y');?>
 <?php
     if(isset($_POST['id'])){
-        $POSTId = $_POST['id'];
+        $POSTid = $_POST['id']; 
 
-        $sql = "SELECT * FROM product WHERE product_id = $POSTId";
+        $sql = "SELECT * FROM product WHERE product_id = $POSTid";
         $query = $conn->query($sql);
         $data = mysqli_fetch_assoc($query);
+
         $product_id         =  $data['product_id'];
         $product_name       =  $data['product_name'];
-        $product_quentity      =  $data['product_quentity'];
+        $product_quentity   =  $data['product_quentity'];
         $product_category   =  $data['product_category'];
         $product_code       =  $data['product_code'];
         $product_entry_date =  $data['product_entry_date'];
@@ -43,10 +44,20 @@ require('connection.php');
             echo 'Update Successful';
             header('location:list_of_product.php');
         }else{
-            echo 'Update Not Successful';
+          echo "Error updating record: " . $conn->error;
         }
     }
 
+?>
+<?php
+  $sql = "SELECT * FROM category";
+  $query = $conn->query($sql);
+
+  $product_name = '';
+  $product_quentity = '';
+  $product_category = '';
+  $product_code = '';
+  $product_entry_date = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">

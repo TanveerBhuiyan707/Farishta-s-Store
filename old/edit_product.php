@@ -36,7 +36,8 @@ session_start();
         $new_product_entry_date = $_GET['product_entry_date'];
         $new_product_id         = $_GET['product_id'];
 
-        $sql1 = "UPDATE product SET product_name = '$new_product_name',
+        $sql1 = "UPDATE product SET
+                    product_name = '$new_product_name',
                     product_category = '$new_product_category',
                     product_code= '$new_product_code',
                     product_entry_date = '$new_product_entry_date'
