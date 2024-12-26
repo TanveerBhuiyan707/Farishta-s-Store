@@ -22,7 +22,9 @@ session_start();
           JOIN
               category
           ON
-            product.product_category = category.category_id";
+            product.product_category = category.category_id
+          ORDER BY 
+                  product.product_name ASC ";
   $query = $conn->query($sql)
  
 ?>
