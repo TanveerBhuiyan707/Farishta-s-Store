@@ -107,7 +107,7 @@ $query = $conn->query($sql);
                        ?>
                       <tr>
                         <td><?php echo $sl ?></td>
-                        <td><?php echo $data_list[$spend_product_name] ?></td>
+                        <td><?php echo isset($data_list[$spend_product_name]) ? $data_list[$spend_product_name] : 'DELETED ITEM' ?></td>
                         <td><?php echo $spend_product_quentity ?></td>
                         <td><?php echo $spend_product_entry_date ?></td>
                         <td>
