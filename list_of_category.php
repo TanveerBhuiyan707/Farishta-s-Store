@@ -28,7 +28,26 @@ $query = $conn->query($sql);
   <link href="css/ruang-admin.min.css" rel="stylesheet">
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+  <!-- this style is for successMessage  -->
+  <style>
+      #successMessage2{
+        position:fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        background-color:#28a745;
+        color:white;
+        padding: 15px;
+        font-size:18px;
+        border-radius:5px;
+        z-index: 9999;
+        box-shadow:0 4px 8px rgba(0,0,0,0.1);
+        display:none;
+      }
+      #successMessage2.show{
+        display:block;
+      }
+   </style>
 </head>
 
 <body id="page-top">
@@ -51,7 +70,12 @@ $query = $conn->query($sql);
               <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
             </ol>
           </div>
-
+            <?php
+                 if(isset($_GET['message'])){
+                  echo "<div class='alert alert-success text-center' id='successMessage2'>
+                  " . $_GET['message'] . "</div>";
+                }
+            ?>
           <div class="row mb-3">
              <!-- Category List -->
              <div class="col-lg-12">
@@ -95,7 +119,9 @@ $query = $conn->query($sql);
                             <a href="edit_category.php?id=<?php echo $category_id ?>" class = "btn btn-success">
                                 <i class = "fas fa-edit"></i>
                             </a>
-                            <a href="#" class = "btn btn-danger mx-3">
+                            <a href="delete_category.php?id=<?php echo $category_id?>"
+                              onclick = "return confirm('Are You Sure you want to delete this Category?')"  
+                            class = "btn btn-danger mx-3">
                                 <i class = "fas fa-trash"></i>
                             </a>
                         </td>
@@ -170,6 +196,18 @@ $query = $conn->query($sql);
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>
+    <!-- success message display  -->
+    <script>
+        window.onload = function(){
+          // cheack if message is present
+          if(window.location.search.indexOf('message') !== -1){
+            document.getElementById('successMessage2').classList.add('show');
+            setTimeout(function(){
+              document.getElementById('successMessage2').classList.remove('show');
+            },3000);
+          }
+        };
+     </script>
 </body>
 </html>
 <?php
