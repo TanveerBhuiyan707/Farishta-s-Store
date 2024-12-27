@@ -46,7 +46,27 @@ session_start();
   <link href="css/ruang-admin.min.css" rel="stylesheet">
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+ 
+  <!-- this style is for successMessage  -->
+   <style>
+      #successMessage{
+        position:fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        background-color:#28a745;
+        color:white;
+        padding: 15px;
+        font-size:18px;
+        border-radius:5px;
+        z-index: 9999;
+        box-shadow:0 4px 8px rgba(0,0,0,0.1);
+        display:none;
+      }
+      #successMessage.show{
+        display:block;
+      }
+   </style>
 </head>
 
 <body id="page-top">
@@ -69,7 +89,13 @@ session_start();
               <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
             </ol>
           </div>
-
+                <!-- Success Message  -->
+                 <?php
+                    if(isset($_GET['message'])){
+                      echo "<div class='alert alert-success text-center' id='successMessage'>
+                      " . $_GET['message'] . "</div>";
+                    }
+                 ?>
           <div class="row mb-3">
              <!-- Product List -->
              <div class="col-lg-12">
@@ -121,7 +147,9 @@ session_start();
                             <a href="edit_product.php?id=<?php echo $product_id ?>" class = "btn btn-success">
                                 <i class = "fas fa-edit"></i>
                             </a>
-                            <a href="#" class = "btn btn-danger mx-3">
+                            <a href="delete_product.php?id=<?php echo $product_id ?>" 
+                                onclick = "return confirm('Are You Sure you want to delete this product ?')"
+                                class = "btn btn-danger mx-3">
                                 <i class = "fas fa-trash"></i>
                             </a>
                         </td>
@@ -164,7 +192,7 @@ session_start();
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>copyright &copy; <script> document.write(new Date().GETFullYear()); </script> - developed by
-              <b><a href="https://www.facebook.com/Tanveer.7077/" tarGET="_blank">Tanveer bhuiyan</a></b>
+              <b><a href="https://www.facebook.com/Tanveer.7077/" target="_blank">Tanveer bhuiyan</a></b>
             </span>
           </div>
         </div>
@@ -196,10 +224,20 @@ session_start();
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>
+    <!-- success message display  -->
+     <script>
+        window.onload = function(){
+          // cheack if message is present
+          if(window.location.search.indexOf('message') !== -1){
+            document.getElementById('successMessage').classList.add('show');
+            setTimeout(function(){
+              document.getElementById('successMessage').classList.remove('show');
+            },3000);
+          }
+        };
+     </script>
 </body>
 </html>
-<?php
-    // }else{
-    //     header('location:login.php');
-    // }
-?>
+  <?php
+ 
+  ?>
