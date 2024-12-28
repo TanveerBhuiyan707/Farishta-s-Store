@@ -43,17 +43,17 @@
           </div>
         </div> -->
       </li> <!-- end store product -->
-      <li class="nav-item"> <!-- start spend product -->
+      <li class="nav-item"> <!-- start Sell Product -->
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSpend" aria-expanded="true"
           aria-controls="collapseSpend">
           <i class="fas fa-fw fa-table"></i>
-          <span>Spend Product</span>
+          <span>Sell Product</span>
         </a>
         <div id="collapseSpend" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Spend Product</h6>
-            <a class="collapse-item" href="add_spend_product.php">Add Spend Product</a>
-            <a class="collapse-item" href="list_of_spend_product.php">Spend Product List</a>
+            <h6 class="collapse-header">Sell Product</h6>
+            <a class="collapse-item" href="add_spend_product.php">Sell Product</a>
+            <a class="collapse-item" href="list_of_spend_product.php">Sell Product List</a>
           </div>
         </div>
       </li>
@@ -71,7 +71,7 @@
           </div>
         </div>
       </li>
-      <!-- end spend product -->
+      <!-- end Sell Product -->
       
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
