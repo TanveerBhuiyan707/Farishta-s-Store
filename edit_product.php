@@ -8,37 +8,36 @@ require('connection.php');
 ?>
 <?php $date = date('d/m/y');?>
 <?php
-    if(isset($_POST['id'])){
-        $POSTid = $_POST['id']; 
+    if(isset($_GET['id'])){
+      $getid = $_GET['id'];
 
-        $sql = "SELECT * FROM product WHERE product_id = $POSTid";
-        $query = $conn->query($sql);
-        $data = mysqli_fetch_assoc($query);
+      $sql = "SELECT * FROM product WHERE product_id=$getid";
+      $query = $conn->query($sql);
+      $data = mysqli_fetch_assoc($query);
 
-        $product_id         =  $data['product_id'];
-        $product_name       =  $data['product_name'];
-        $product_quentity   =  $data['product_quentity'];
-        $product_category   =  $data['product_category'];
-        $product_code       =  $data['product_code'];
-        $product_entry_date =  $data['product_entry_date'];
-    }
+      $product_id         =  $data['product_id'];
+      $product_name       =  $data['product_name'];
+      $product_quentity   =  $data['product_quentity'];
+      $product_category   =  $data['product_category'];
+      $product_code       =  $data['product_code'];
+      $product_entry_date =  $data['product_entry_date'];
+  }
 
-    if(isset($_POST['product_name'])){
-        $new_product_name       = $_POST['product_name'];
-        $new_product_quentity   = $_POST['product_quentity'];
-        $new_product_category   = $_POST['product_category'];
-        $new_product_code       = $_POST['product_code'];
-        $new_product_entry_date = $_POST['product_entry_date'];
-        $new_product_id         = $_POST['product_id'];
+  if(isset($_GET['product_name'])){
+      $new_product_name       = $_GET['product_name'];
+      $new_product_category   = $_GET['product_category'];
+      $new_product_quentity   = $_GET['product_quentity'];
+      $new_product_code       = $_GET['product_code'];
+      $new_product_entry_date = $_GET['product_entry_date'];
+      $new_product_id         = $_GET['product_id'];
 
-
-        $sql1 = "UPDATE product SET
-                product_name ='$new_product_name',
-                product_quentity = '$new_product_quentity',
-                product_category = '$new_product_category',
-                product_code = '$new_product_code',
-                product_entry_date = '$new_product_entry_date'
-                WHERE product_id = $new_product_id";
+      $sql1 = "UPDATE product SET
+                  product_name = '$new_product_name',
+                  product_category = '$new_product_category',
+                  product_code= '$new_product_code',
+                  product_quentity = '$new_product_quentity',
+                  product_entry_date = '$new_product_entry_date'
+                  WHERE product_id = $new_product_id";
         
         if($conn->query($sql1)==TRUE){
             echo 'Update Successful';
@@ -53,11 +52,7 @@ require('connection.php');
   $sql = "SELECT * FROM category";
   $query = $conn->query($sql);
 
-  $product_name = '';
-  $product_quentity = '';
-  $product_category = '';
-  $product_code = '';
-  $product_entry_date = '';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,36 +106,48 @@ require('connection.php');
                   <h6 class="m-0 font-weight-bold text-primary">Edit Product</h6>
                 </div>
                 <div class="card-body">
-                  <form action ="" method="POST">
+                  <form action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET">
                     <div class="form-group">
-                      <label for="exampleInputProduct">Product Name</label>
-                      <input type="text" name="product_name" value="<?php echo $product_name ?>" class="form-control" id="exampleInputProduct" aria-describedby="emailHelp">
+                        <label for="product_name">Edit Product Name</label>
+                        <input type="text" name="product_name" value="<?php echo htmlspecialchars($product_name);?>" class="form-control" id="product_name" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputProduct">Product Quentity</label>
-                      <input type="text" name="product_quentity" value="<?php echo $product_quentity; ?>" class="form-control" id="exampleInputProduct" aria-describedby="emailHelp">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputProduct">Product Category</label>
-                      <input type="text" name="product_category" value="<?php echo $product_category ?>" class="form-control" id="exampleInputProduct" aria-describedby="emailHelp">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputProduct">Product Code</label>
-                      <input type="text" name="product_code" value="<?php echo $product_code ?>" class="form-control" id="exampleInputProduct" aria-describedby="emailHelp">
+                        <label for="product_quentity">Edit Product Quentity</label>
+                        <input type="text" name="product_quentity" value="<?php echo htmlspecialchars($product_quentity);?>" class="form-control" id="product_quentity" aria-describedby="emailHelp">
                     </div>
                     
-                    <div class="form-group" id="simple-date1">
-                    <label for="simpleDataInput">Edit Entry Date</label>
-                        <div class="input-group date">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                            </div>
-                            <input type="text" name = "product_entry_date" value="<?php echo $product_entry_date ?>" class="form-control" id="simpleDataInput">
-                        </div>
+                    <div class="form-group">
+                        <label for="product_code ">Edit Product Code</label>
+                        <input type="text" name="product_code" value="<?php echo htmlspecialchars($product_code);?>" class="form-control" id="product_code" aria-describedby="emailHelp">
                     </div>
+                      <div class="form-group">
+                        <label for="product_category">Edit Product Category</label>
+                        <select name="product_category" required>
+                          <!-- echo '<option value="" disabled selected>Select a Category</option>'; -->
+                              <?php
+                              while ($data = mysqli_fetch_array($query)){
+                              $category_id = $data['category_id'];
+                              $category_name = $data['category_name'];
+                              ?>
+                            <option value = '<?php echo $category_id ?>' <?php  if($category_id == $product_category ){echo 'selected';} ?>>
+                                  <?php echo $category_name ?>
+                              </option>
+                              <?php } ?>
+                              ?>
+                          </select>
+                    </div>
+                    <div class="form-group" id="simple-date1">
+                      <label for="product_entry_date">Edit Entry Date</label>
+                          <div class="input-group date">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                              </div>
+                              <input type="text" name = "category_entryDate" value="<?php echo $product_entry_date?>" class="form-control" id="simpleDataInput">
+                          </div>
+                      </div>
                     <input type="text" name="product_id" value="<?php echo $product_id ?>" hidden>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
+                </form>
                 </div>
               </div>
             </div>

@@ -22,7 +22,8 @@ if(isset($_GET['product_name'])){
   VALUES('$product_name','$product_quentity','$product_category','$product_code','$product_entry_date')";
 
   if($conn->query($sql)===TRUE){
-    echo "Data Inserted";
+    // echo "Data Inserted";
+    header("location:list_of_product.php");
   }else{
     echo "Data Not Inserted";
   }
@@ -86,16 +87,16 @@ $date = date('d-m-y');
                     <div class="form-group">
                       <label for="exampleInputProduct">Product Name</label>
                       <input type="text" name="product_name"  class="form-control" id="exampleInputProduct" aria-describedby="emailHelp"
-                        placeholder="Enter Product Name">
+                        placeholder="Enter Product Name" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputQuentity">Product Quentity</label>
                       <input type="text" name="product_quentity"  class="form-control" id="exampleInputQuentity" aria-describedby="emailHelp"
-                        placeholder="Enter Product Quentity">
+                        placeholder="Enter Product Quentity" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputCategory">Product Category</label> <br>
-                      <select name="product_category">
+                      <select name="product_category" required>
                         <option value="">Select a Category</option>
                         <?php
                           while($data = mysqli_fetch_array($query)){
@@ -109,11 +110,11 @@ $date = date('d-m-y');
                     <div class="form-group">
                       <label for="exampleInputCode">Product Code</label>
                       <input type="text" name="product_code"  class="form-control" id="exampleInputCode" aria-describedby="emailHelp"
-                        placeholder="Enter Product code">
+                        placeholder="Enter Product code" required>
                     </div>
                     
                     <div class="form-group" id="simple-date1">
-                    <label for="simpleDataInput">Simple Data Input</label>
+                    <label for="simpleDataInput"> Date</label>
                         <div class="input-group date">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-calendar"></i></span>

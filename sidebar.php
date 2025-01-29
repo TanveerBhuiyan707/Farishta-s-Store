@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <!-- sidebar Name -->
@@ -111,3 +118,5 @@
       <hr class="sidebar-divider">
       <div class="version" id="version-ruangadmin"></div>
     </ul>
+    </body>
+</html>
